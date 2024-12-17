@@ -1,1 +1,132 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проверка подобия треугольников</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f8ff;
+        }
+
+        .checker {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        .checker h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .check-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .check-btn:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="checker">
+        <h1>Проверка подобия треугольников</h1>
+        <div class="input-group">
+            <label for="a">Треугольник 1: Катет a:</label>
+            <input type="number" id="a" placeholder="Введите длину a">
+        </div>
+        <div class="input-group">
+            <label for="b">Треугольник 1: Катет b:</label>
+            <input type="number" id="b" placeholder="Введите длину b">
+        </div>
+        <div class="input-group">
+            <label for="c">Треугольник 2: Катет c:</label>
+            <input type="number" id="c" placeholder="Введите длину c">
+        </div>
+        <div class="input-group">
+            <label for="d">Треугольник 2: Катет d:</label>
+            <input type="number" id="d" placeholder="Введите длину d">
+        </div>
+        <button class="check-btn" onclick="checkSimilarity()">Проверить подобие</button>
+        <div class="result" id="result"></div>
+        <button class="check-btn " onclick="openLink()">Открыть ссылку</button>
+
+    </div>
+
+    <script>
+        function openLink() {
+            window.open("", "_blank");
+        }
+        function checkSimilarity() {
+            // Получить значения ввода
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            const d = parseFloat(document.getElementById('d').value);
+
+            // Проверить корректность ввода
+            if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d) || a <= 0 || b <= 0 || c <= 0 || d <= 0) {
+                alert('Пожалуйста, введите корректные положительные числа для всех сторон.');
+                return;
+            }
+
+            // Проверить подобие треугольников
+            const ratio1 = a / c;
+            const ratio2 = b / d;
+
+            if (Math.abs(ratio1 - ratio2) < 1e-6) { // Учет возможных ошибок округления
+                alert('Треугольники подобны.');
+            } else {
+                alert('Треугольники не подобны.');
+            }
+        }
+    </script>
+</body>
+
+</html>
